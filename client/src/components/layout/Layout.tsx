@@ -1,5 +1,6 @@
 import React from 'react';
-import { Rocket, Satellite, Menu, X, Newspaper, BarChart3, MessageSquare } from 'lucide-react';
+import { Menu, X, Rocket, Newspaper, BarChart3, Satellite } from 'lucide-react';
+import { useUiStore, DashboardTab } from '@/store/useUiStore';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,6 +8,7 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+  const { activeTab, setActiveTab } = useUiStore();
 
   return (
     <div className="flex h-screen overflow-hidden bg-background relative selection:bg-cyan-500/30">
@@ -21,9 +23,9 @@ export function Layout({ children }: LayoutProps) {
           <span className="text-xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">OrbitDash</span>
         </div>
         <nav className="flex-1 space-y-2 p-4">
-          <NavItem icon={<Rocket className="h-5 w-5" />} label="ISS Tracking" href="#iss-tracking" active />
-          <NavItem icon={<Newspaper className="h-5 w-5" />} label="News Feed" href="#news-feed" />
-          <NavItem icon={<BarChart3 className="h-5 w-5" />} label="Analytics" href="#analytics" />
+          <NavItem icon={<Rocket className="h-5 w-5" />} label="Mission Control" active={activeTab === 'overview'} onClick={() => setActiveTab('overview')} />
+          <NavItem icon={<BarChart3 className="h-5 w-5" />} label="Analytics" active={activeTab === 'analytics'} onClick={() => setActiveTab('analytics')} />
+          <NavItem icon={<Newspaper className="h-5 w-5" />} label="Space News" active={activeTab === 'news'} onClick={() => setActiveTab('news')} />
         </nav>
       </aside>
 
@@ -41,19 +43,17 @@ export function Layout({ children }: LayoutProps) {
             </div>
           </div>
           <div className="hidden lg:flex flex-1"></div>
-          <div className="flex items-center space-x-4">
-             {/* User profile placeholder */}
-             <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-cyan-400 to-purple-500"></div>
-          </div>
         </header>
 
-        {/* Dashboard Content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
-          {children}
+        {/* Main Area */}
+        <main className="flex-1 overflow-y-auto p-4 lg:p-8">
+          <div className="mx-auto max-w-7xl">
+            {children}
+          </div>
         </main>
       </div>
 
-      {/* Mobile Sidebar Overlay */}
+      {/* Mobile Sidebar */}
       {isSidebarOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
           <div className="fixed inset-0 bg-black/50" onClick={() => setIsSidebarOpen(false)}></div>
@@ -68,9 +68,24 @@ export function Layout({ children }: LayoutProps) {
               </button>
             </div>
             <nav className="flex-1 space-y-2 p-4">
-              <NavItem icon={<Rocket className="h-5 w-5" />} label="ISS Tracking" href="#iss-tracking" onClick={() => setIsSidebarOpen(false)} active />
-              <NavItem icon={<Newspaper className="h-5 w-5" />} label="News Feed" href="#news-feed" onClick={() => setIsSidebarOpen(false)} />
-              <NavItem icon={<BarChart3 className="h-5 w-5" />} label="Analytics" href="#analytics" onClick={() => setIsSidebarOpen(false)} />
+              <NavItem 
+                icon={<Rocket className="h-5 w-5" />} 
+                label="Mission Control" 
+                active={activeTab === 'overview'} 
+                onClick={() => { setActiveTab('overview'); setIsSidebarOpen(false); }} 
+              />
+              <NavItem 
+                icon={<BarChart3 className="h-5 w-5" />} 
+                label="Analytics" 
+                active={activeTab === 'analytics'} 
+                onClick={() => { setActiveTab('analytics'); setIsSidebarOpen(false); }} 
+              />
+              <NavItem 
+                icon={<Newspaper className="h-5 w-5" />} 
+                label="Space News" 
+                active={activeTab === 'news'} 
+                onClick={() => { setActiveTab('news'); setIsSidebarOpen(false); }} 
+              />
             </nav>
           </aside>
         </div>
@@ -79,12 +94,11 @@ export function Layout({ children }: LayoutProps) {
   );
 }
 
-function NavItem({ icon, label, href, active, onClick }: { icon: React.ReactNode; label: string; href?: string; active?: boolean; onClick?: () => void }) {
+function NavItem({ icon, label, active, onClick }: { icon: React.ReactNode; label: string; active?: boolean; onClick?: () => void }) {
   return (
-    <a
-      href={href || "#"}
+    <button
       onClick={onClick}
-      className={`flex items-center space-x-3 rounded-xl px-4 py-3 transition-all duration-300 group ${
+      className={`w-full flex items-center space-x-3 rounded-xl px-4 py-3 transition-all duration-300 group ${
         active 
           ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/10 text-cyan-300 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.15)]' 
           : 'text-gray-400 hover:bg-white/5 hover:text-white border border-transparent'
