@@ -47,7 +47,7 @@ export const useNewsStore = create<NewsState>()(
 
         try {
           set({ isLoading: true, error: null });
-          const res = await axios.get(`http://localhost:5001/api/news?category=${category}`);
+          const res = await axios.get(`/api/news?category=${category}`);
           set({ 
             articles: res.data.articles || [], 
             isLoading: false,

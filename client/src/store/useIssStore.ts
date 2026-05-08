@@ -32,7 +32,7 @@ export const useIssStore = create<IssState>((set, get) => ({
   fetchIssLocation: async () => {
     try {
       set({ isLoading: true, error: null });
-      const res = await axios.get('http://localhost:5001/api/iss');
+      const res = await axios.get('/api/iss');
       const data = res.data;
       
       const newPos: IssPosition = {
@@ -68,7 +68,7 @@ export const useIssStore = create<IssState>((set, get) => ({
 
   fetchAstronauts: async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/astronauts');
+      const res = await axios.get('/api/astronauts');
       set({ astronauts: res.data.people.filter((p: any) => p.craft === 'ISS') });
     } catch (error) {
       console.error('Failed to fetch astronauts', error);

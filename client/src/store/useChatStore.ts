@@ -61,7 +61,7 @@ export const useChatStore = create<ChatState>()(
             }))
           };
 
-          const res = await axios.post('http://localhost:5001/api/chat', {
+          const res = await axios.post('/api/chat', {
             message: content,
             issContext,
             newsContext
