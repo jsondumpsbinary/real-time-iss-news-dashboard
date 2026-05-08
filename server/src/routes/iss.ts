@@ -32,9 +32,14 @@ router.get('/', async (req, res) => {
       message: 'success'
     });
   } catch (error: any) {
-    console.error('Error fetching ISS data:', error?.message);
-    // Backoff for 5 seconds even on error to prevent spamming the rate-limited API
-    lastFetchTime = now;
+    // Suppress console spam if we are heavily rate-limited
+    if (error?.response?.status !== 429) {
+      console.error('Error fetching ISS data:', error?.message);
+    }
+    
+    // Backoff for 60 seconds on error to prevent spamming the rate-limited API
+    // We add 55000ms to `now` so that (now - lastFetchTime > 5000) fails for 60 seconds
+    lastFetchTime = now + 55000;
     
     // Return cached or mock data so the dashboard doesn't break!
     res.json({
