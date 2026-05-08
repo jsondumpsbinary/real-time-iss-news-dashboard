@@ -24,10 +24,10 @@ export function NewsFeed() {
             <button
               key={c}
               onClick={() => setCategory(c)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 category === c 
-                  ? 'bg-primary text-primary-foreground shadow-md' 
-                  : 'bg-secondary/50 text-secondary-foreground hover:bg-secondary'
+                  ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-[0_0_15px_rgba(6,182,212,0.4)] border-none' 
+                  : 'bg-black/40 text-gray-300 hover:bg-white/10 hover:text-white border border-white/5'
               }`}
             >
               {c.charAt(0).toUpperCase() + c.slice(1)}
@@ -55,8 +55,8 @@ export function NewsFeed() {
       ) : isLoading && articles.length === 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map(i => (
-            <div key={i} className="animate-pulse bg-card border border-border rounded-xl h-80 flex flex-col">
-              <div className="h-40 bg-white/5 rounded-t-xl"></div>
+            <div key={i} className="animate-pulse bg-black/40 backdrop-blur-md border border-white/5 rounded-xl h-80 flex flex-col">
+              <div className="h-40 bg-white/5 rounded-t-xl border-b border-white/5"></div>
               <div className="p-4 space-y-3 flex-1">
                 <div className="h-4 bg-white/5 rounded w-1/4"></div>
                 <div className="h-6 bg-white/5 rounded w-3/4"></div>
@@ -74,9 +74,9 @@ export function NewsFeed() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05, duration: 0.4 }}
               key={article.url}
-              className="group bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all shadow-sm hover:shadow-primary/10 flex flex-col h-full"
+              className="group bg-black/40 backdrop-blur-md border border-white/5 rounded-xl overflow-hidden hover:border-cyan-500/30 transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:-translate-y-2 flex flex-col h-full"
             >
-              <div className="h-48 overflow-hidden relative bg-muted">
+              <div className="h-48 overflow-hidden relative bg-black/50">
                 {article.urlToImage ? (
                   <img 
                     src={article.urlToImage} 
@@ -112,10 +112,11 @@ export function NewsFeed() {
                   href={article.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors mt-auto"
+                  className="inline-flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors mt-auto relative overflow-hidden group/btn"
                 >
-                  Read full article
-                  <ExternalLink className="ml-1 h-3 w-3" />
+                  <span className="relative z-10">Read full article</span>
+                  <ExternalLink className="ml-1 h-3 w-3 relative z-10" />
+                  <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-cyan-400 group-hover/btn:w-full transition-all duration-300"></div>
                 </a>
               </div>
             </motion.div>

@@ -9,12 +9,16 @@ export function Layout({ children }: LayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
+    <div className="flex h-screen overflow-hidden bg-background relative selection:bg-cyan-500/30">
+      {/* Animated Deep Space Background Blob */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-cyan-600/20 rounded-full blur-[120px] animate-pulse-glow pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[120px] animate-pulse-glow pointer-events-none" style={{ animationDelay: '2s' }} />
+
       {/* Sidebar - Desktop */}
-      <aside className="hidden w-64 border-r border-border bg-card lg:flex lg:flex-col">
-        <div className="flex h-16 items-center px-6 border-b border-border">
-          <Satellite className="mr-2 h-6 w-6 text-cyan-400" />
-          <span className="text-lg font-bold tracking-tight text-white">OrbitDash</span>
+      <aside className="hidden w-64 border-r border-white/5 bg-black/40 backdrop-blur-xl lg:flex lg:flex-col z-10">
+        <div className="flex h-16 items-center px-6 border-b border-white/5">
+          <Satellite className="mr-2 h-6 w-6 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+          <span className="text-xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">OrbitDash</span>
         </div>
         <nav className="flex-1 space-y-2 p-4">
           <NavItem icon={<Rocket className="h-5 w-5" />} label="ISS Tracking" href="#iss-tracking" active />
@@ -24,16 +28,16 @@ export function Layout({ children }: LayoutProps) {
       </aside>
 
       {/* Main Content */}
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex flex-1 flex-col overflow-hidden z-10">
         {/* Top Navbar */}
-        <header className="flex h-16 items-center justify-between border-b border-border bg-card/50 backdrop-blur-md px-6">
+        <header className="flex h-16 items-center justify-between border-b border-white/5 bg-black/40 backdrop-blur-xl px-6">
           <div className="flex items-center lg:hidden">
             <button onClick={() => setIsSidebarOpen(true)} className="text-gray-400 hover:text-white">
               <Menu className="h-6 w-6" />
             </button>
             <div className="ml-4 flex items-center">
-              <Satellite className="mr-2 h-6 w-6 text-cyan-400" />
-              <span className="text-lg font-bold text-white">OrbitDash</span>
+              <Satellite className="mr-2 h-6 w-6 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+              <span className="text-xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">OrbitDash</span>
             </div>
           </div>
           <div className="hidden lg:flex flex-1"></div>
@@ -54,10 +58,10 @@ export function Layout({ children }: LayoutProps) {
         <div className="fixed inset-0 z-50 flex lg:hidden">
           <div className="fixed inset-0 bg-black/50" onClick={() => setIsSidebarOpen(false)}></div>
           <aside className="relative flex w-64 flex-col bg-card border-r border-border h-full z-50 animate-in slide-in-from-left-0">
-            <div className="flex h-16 items-center justify-between px-6 border-b border-border">
+            <div className="flex h-16 items-center justify-between px-6 border-b border-white/5">
               <div className="flex items-center">
-                <Satellite className="mr-2 h-6 w-6 text-cyan-400" />
-                <span className="text-lg font-bold text-white">OrbitDash</span>
+                <Satellite className="mr-2 h-6 w-6 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                <span className="text-xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">OrbitDash</span>
               </div>
               <button onClick={() => setIsSidebarOpen(false)} className="text-gray-400 hover:text-white">
                 <X className="h-6 w-6" />
@@ -80,10 +84,10 @@ function NavItem({ icon, label, href, active, onClick }: { icon: React.ReactNode
     <a
       href={href || "#"}
       onClick={onClick}
-      className={`flex items-center space-x-3 rounded-lg px-4 py-3 transition-all duration-200 ${
+      className={`flex items-center space-x-3 rounded-xl px-4 py-3 transition-all duration-300 group ${
         active 
-          ? 'bg-primary/20 text-cyan-400' 
-          : 'text-gray-400 hover:bg-white/5 hover:text-white'
+          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/10 text-cyan-300 border border-cyan-500/20 shadow-[0_0_15px_rgba(6,182,212,0.15)]' 
+          : 'text-gray-400 hover:bg-white/5 hover:text-white border border-transparent'
       }`}
     >
       {icon}

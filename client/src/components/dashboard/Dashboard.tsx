@@ -8,9 +8,9 @@ import { motion } from 'framer-motion';
 export function Dashboard() {
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
-        <p className="text-muted-foreground">Real-time ISS tracking and space news.</p>
+      <div className="mb-8">
+        <h1 className="text-4xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-100 to-cyan-400 drop-shadow-sm uppercase">Mission Control</h1>
+        <p className="text-cyan-400/70 tracking-widest uppercase text-sm mt-2 font-semibold">Real-time Telemetry & Orbital Updates</p>
       </div>
 
       {/* ISS Tracking Section */}

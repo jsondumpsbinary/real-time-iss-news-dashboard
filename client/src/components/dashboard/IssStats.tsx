@@ -43,9 +43,9 @@ export function IssStats() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: stat.delay, duration: 0.5 }}
-          className="bg-card border border-border p-5 rounded-xl flex items-center space-x-4 shadow-sm"
+          className="bg-black/40 backdrop-blur-md border border-white/5 p-5 rounded-xl flex items-center space-x-4 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:border-cyan-500/30 transition-all duration-300 group"
         >
-          <div className="p-3 bg-white/5 rounded-lg border border-white/10">
+          <div className="p-3 bg-white/5 rounded-xl border border-white/10 group-hover:bg-cyan-500/20 group-hover:scale-110 transition-all duration-300 shadow-inner">
             {stat.icon}
           </div>
           <div>
@@ -66,7 +66,7 @@ export function IssStats() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="col-span-2 lg:col-span-1 bg-card border border-border p-5 rounded-xl shadow-sm mt-2"
+          className="col-span-2 lg:col-span-1 bg-black/40 backdrop-blur-md border border-white/5 p-5 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] mt-2 hover:-translate-y-1 transition-all duration-300"
         >
           <p className="text-sm font-medium text-muted-foreground mb-3 flex items-center">
             <Users className="h-4 w-4 mr-2" />
@@ -74,7 +74,7 @@ export function IssStats() {
           </p>
           <div className="flex flex-wrap gap-2">
             {astronauts.map((astro) => (
-              <span key={astro.name} className="px-3 py-1 bg-primary/20 text-primary-foreground text-xs rounded-full border border-primary/30">
+              <span key={astro.name} className="px-3 py-1 bg-cyan-500/10 text-cyan-300 text-xs rounded-full border border-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.1)]">
                 {astro.name}
               </span>
             ))}

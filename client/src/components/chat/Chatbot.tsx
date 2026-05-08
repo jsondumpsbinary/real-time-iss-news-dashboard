@@ -33,7 +33,7 @@ export function Chatbot() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={toggleChat}
-            className="fixed bottom-6 right-6 p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:bg-primary/90 transition-transform hover:scale-105 z-50 flex items-center justify-center group"
+            className="fixed bottom-6 right-6 p-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-full shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all hover:scale-110 z-50 flex items-center justify-center group"
           >
             <MessageSquare className="h-6 w-6" />
             <span className="absolute right-full mr-4 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">
@@ -51,10 +51,10 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed bottom-6 right-6 w-80 sm:w-96 h-[500px] max-h-[80vh] bg-card border border-border shadow-2xl rounded-2xl flex flex-col z-50 overflow-hidden"
+            className="fixed bottom-6 right-6 w-80 sm:w-96 h-[500px] max-h-[80vh] bg-black/60 backdrop-blur-2xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.8)] rounded-2xl flex flex-col z-50 overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-border bg-card">
+            <div className="flex items-center justify-between p-4 border-b border-white/10 bg-black/40">
               <div className="flex items-center space-x-2">
                 <div className="bg-primary/20 p-2 rounded-full">
                   <Bot className="h-5 w-5 text-primary" />
@@ -137,7 +137,7 @@ export function Chatbot() {
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-card border-t border-border">
+            <div className="p-4 bg-black/40 border-t border-white/10">
               <form onSubmit={handleSubmit} className="flex items-center space-x-2">
                 <input
                   type="text"

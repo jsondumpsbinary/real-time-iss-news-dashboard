@@ -32,7 +32,7 @@ export function Analytics() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div className="bg-card border border-border p-6 rounded-xl shadow-sm">
+      <div className="bg-black/40 backdrop-blur-md border border-white/5 p-6 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
         <h3 className="text-lg font-semibold text-white mb-6">ISS Speed History</h3>
         <div className="h-64 w-full">
           <ResponsiveContainer width="100%" height="100%" minHeight={250} minWidth={250}>
@@ -77,7 +77,7 @@ export function Analytics() {
         </div>
       </div>
 
-      <div className="bg-card border border-border p-6 rounded-xl shadow-sm">
+      <div className="bg-black/40 backdrop-blur-md border border-white/5 p-6 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
         <h3 className="text-lg font-semibold text-white mb-6">News Distribution by Source</h3>
         <div className="h-64 w-full">
           {sourceData.length > 0 ? (
