@@ -14,7 +14,7 @@ export function Dashboard() {
       </div>
 
       {/* ISS Tracking Section */}
-      <section>
+      <section id="iss-tracking">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 h-[450px] rounded-xl overflow-hidden border border-border shadow-lg relative bg-card">
             <IssMap />
@@ -26,13 +26,13 @@ export function Dashboard() {
       </section>
 
       {/* Analytics Section */}
-      <section>
+      <section id="analytics">
         <h2 className="text-2xl font-semibold text-white mb-4">Analytics</h2>
         <Analytics />
       </section>
 
       {/* News Section */}
-      <section>
+      <section id="news-feed">
         <h2 className="text-2xl font-semibold text-white mb-4">Latest Space News</h2>
         <NewsFeed />
       </section>

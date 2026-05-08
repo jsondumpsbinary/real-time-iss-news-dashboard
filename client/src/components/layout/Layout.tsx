@@ -17,9 +17,9 @@ export function Layout({ children }: LayoutProps) {
           <span className="text-lg font-bold tracking-tight text-white">OrbitDash</span>
         </div>
         <nav className="flex-1 space-y-2 p-4">
-          <NavItem icon={<Rocket className="h-5 w-5" />} label="ISS Tracking" active />
-          <NavItem icon={<Newspaper className="h-5 w-5" />} label="News Feed" />
-          <NavItem icon={<BarChart3 className="h-5 w-5" />} label="Analytics" />
+          <NavItem icon={<Rocket className="h-5 w-5" />} label="ISS Tracking" href="#iss-tracking" active />
+          <NavItem icon={<Newspaper className="h-5 w-5" />} label="News Feed" href="#news-feed" />
+          <NavItem icon={<BarChart3 className="h-5 w-5" />} label="Analytics" href="#analytics" />
         </nav>
       </aside>
 
@@ -64,9 +64,9 @@ export function Layout({ children }: LayoutProps) {
               </button>
             </div>
             <nav className="flex-1 space-y-2 p-4">
-              <NavItem icon={<Rocket className="h-5 w-5" />} label="ISS Tracking" active />
-              <NavItem icon={<Newspaper className="h-5 w-5" />} label="News Feed" />
-              <NavItem icon={<BarChart3 className="h-5 w-5" />} label="Analytics" />
+              <NavItem icon={<Rocket className="h-5 w-5" />} label="ISS Tracking" href="#iss-tracking" onClick={() => setIsSidebarOpen(false)} active />
+              <NavItem icon={<Newspaper className="h-5 w-5" />} label="News Feed" href="#news-feed" onClick={() => setIsSidebarOpen(false)} />
+              <NavItem icon={<BarChart3 className="h-5 w-5" />} label="Analytics" href="#analytics" onClick={() => setIsSidebarOpen(false)} />
             </nav>
           </aside>
         </div>
@@ -75,10 +75,11 @@ export function Layout({ children }: LayoutProps) {
   );
 }
 
-function NavItem({ icon, label, active }: { icon: React.ReactNode; label: string; active?: boolean }) {
+function NavItem({ icon, label, href, active, onClick }: { icon: React.ReactNode; label: string; href?: string; active?: boolean; onClick?: () => void }) {
   return (
     <a
-      href="#"
+      href={href || "#"}
+      onClick={onClick}
       className={`flex items-center space-x-3 rounded-lg px-4 py-3 transition-all duration-200 ${
         active 
           ? 'bg-primary/20 text-cyan-400' 
