@@ -39,23 +39,8 @@ export const useIssStore = create<IssState>((set, get) => ({
         lat: parseFloat(data.iss_position.latitude),
         lng: parseFloat(data.iss_position.longitude),
         timestamp: data.timestamp * 1000,
+        speed: data.speed || 27600
       };
-
-      const { positions } = get();
-      
-      if (positions.length > 0) {
-        const lastPos = positions[positions.length - 1];
-        const distance = calculateDistance(lastPos.lat, lastPos.lng, newPos.lat, newPos.lng);
-        const timeDiffHours = (newPos.timestamp - lastPos.timestamp) / (1000 * 60 * 60);
-        
-        if (timeDiffHours > 0) {
-          newPos.speed = distance / timeDiffHours;
-        } else {
-          newPos.speed = lastPos.speed || 27600; // default approximate speed
-        }
-      } else {
-        newPos.speed = 27600; // initial default speed
-      }
 
       set((state) => ({
         positions: [...state.positions.slice(-14), newPos], // keep last 15

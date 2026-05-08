@@ -34,8 +34,8 @@ export function Analytics() {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div className="bg-card border border-border p-6 rounded-xl shadow-sm">
         <h3 className="text-lg font-semibold text-white mb-6">ISS Speed History</h3>
-        <div className="h-64">
-          <ResponsiveContainer width="100%" height="100%">
+        <div className="h-64 w-full">
+          <ResponsiveContainer width="100%" height="100%" minHeight={250} minWidth={250}>
             <AreaChart data={speedData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
               <defs>
                 <linearGradient id="colorSpeed" x1="0" y1="0" x2="0" y2="1">
@@ -79,9 +79,9 @@ export function Analytics() {
 
       <div className="bg-card border border-border p-6 rounded-xl shadow-sm">
         <h3 className="text-lg font-semibold text-white mb-6">News Distribution by Source</h3>
-        <div className="h-64">
+        <div className="h-64 w-full">
           {sourceData.length > 0 ? (
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minHeight={250} minWidth={250}>
               <PieChart>
                 <Pie
                   data={sourceData}
