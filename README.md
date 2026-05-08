@@ -1,67 +1,79 @@
-# Real-Time ISS & News Dashboard
+# 🛰️ OrbitDash - Real-Time ISS & Space News Dashboard
 
-A production-ready full-stack web application for real-time ISS tracking, space news, and an AI-powered chatbot. 
+![OrbitDash Banner](https://img.shields.io/badge/Status-Production%20Ready-success) ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB) ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
 
-## Features
+OrbitDash is a full-stack, production-ready web application designed for space enthusiasts. It features real-time tracking of the International Space Station (ISS), live updates from the global space industry, and an interactive, context-aware AI Assistant powered by Hugging Face.
 
-- **Real-Time ISS Tracking**: Live map with custom markers, trajectory paths, and speed calculations using the Haversine formula.
-- **News Dashboard**: Masonry/grid layout news feed powered by NewsAPI with category filtering and local storage caching.
-- **AI Chatbot**: A strictly scoped AI assistant powered by Hugging Face `mistralai/Mistral-7B-Instruct-v0.2` that answers questions based on dashboard data.
-- **Analytics**: Beautiful charts using Recharts for ISS speed history and news distribution.
-- **Modern UI**: Dark/light mode, responsive design, glassmorphism, Framer Motion animations, built with TailwindCSS and shadcn/ui.
+---
 
-## Tech Stack
+## ✨ Key Features
 
-- **Frontend**: React, Vite, TypeScript, TailwindCSS, shadcn/ui, Zustand, React Query, Leaflet.js, Recharts, Framer Motion.
-- **Backend**: Node.js, Express, TypeScript.
-- **AI**: Hugging Face Inference API.
+- 🌍 **Real-Time ISS Tracking**: Live interactive maps plotting the ISS's current global position, complete with velocity tracking and historical trajectory mapping.
+- 📰 **Live Space News Feed**: A dynamic masonry-grid news feed sourcing the latest articles from the space industry, automatically categorized and updated.
+- 🤖 **Context-Aware AI Chatbot**: An embedded AI assistant (`Qwen/Qwen2.5-Coder-32B-Instruct`) that reads the live dashboard data and accurately answers user questions regarding current ISS velocity, astronaut counts, or recent space news.
+- 📊 **Interactive Analytics**: Beautiful, responsive charts powered by Recharts visualizing ISS speed history and news source distributions.
+- 🎨 **Modern UI/UX**: A sleek, dark-themed glassmorphic interface utilizing TailwindCSS, Framer Motion animations, and responsive layout design.
 
-## Setup Instructions
+---
+
+## 🛠️ Technology Stack
+
+**Frontend Architecture**
+- **Framework**: React 18, Vite, TypeScript
+- **State Management**: Zustand
+- **Styling**: TailwindCSS, Shadcn/UI (Lucide Icons)
+- **Data Visualization**: Recharts, Leaflet.js
+- **Animation**: Framer Motion
+
+**Backend Infrastructure**
+- **Server**: Node.js, Express.js
+- **AI Integration**: Hugging Face Serverless Inference API
+- **External Data**: WhereTheISS.at API (Telemetry), Spaceflight News API (Articles), Open-Notify (Astronauts)
+
+---
+
+## 🚀 Quick Start Guide
 
 ### Prerequisites
-- Node.js (v16 or higher)
+- Node.js (v18 or higher)
 - npm or yarn
 
-### 1. Clone and Install
-Run the following commands to install dependencies for both the frontend and backend.
+### 1. Clone & Install
+Clone the repository and install all necessary dependencies for both the client and server.
 ```bash
+git clone https://github.com/jsondumpsbinary/real-time-iss-news-dashboard.git
+cd real-time-iss-news-dashboard
 npm run install:all
 ```
-Alternatively, you can manually navigate into `client/` and `server/` and run `npm install` in both.
 
-### 2. Environment Variables
-
-Create a `.env` file in the **`server`** directory:
+### 2. Environment Configuration
+Create a `.env` file in the **`server`** directory. You will need a free Hugging Face User Access Token to power the AI Chatbot.
 ```env
-PORT=5000
-HF_MODEL=mistralai/Mistral-7B-Instruct-v0.2
-VITE_NEWS_API_KEY=your_news_api_key_here
+PORT=5001
 VITE_HF_TOKEN=your_hugging_face_token_here
 ```
-*(Note: You can get a News API key from newsapi.org and a Hugging Face token from huggingface.co)*
 
-### 3. Run Development Servers
-Start both the frontend and backend servers concurrently:
+### 3. Start Development Server
+Boot up the application locally. This command concurrently starts both the Vite frontend and the Express backend.
 ```bash
 npm run dev
 ```
-- Frontend will run on `http://localhost:5173`
-- Backend will run on `http://localhost:5000`
+Navigate to `http://localhost:5173` in your browser to view the application!
 
-## Deployment
+---
 
-### Frontend (Vercel)
-1. Push the repository to GitHub.
-2. Import the project in Vercel.
-3. Set the Root Directory to `client`.
-4. Ensure the Build Command is `npm run build` and Output Directory is `dist`.
+## ☁️ Deployment (Vercel)
 
-### Backend (Render / Railway)
-1. Create a new Web Service and link the GitHub repository.
-2. Set the Root Directory to `server`.
-3. Build Command: `npm install && npm run build`
-4. Start Command: `npm start`
-5. Add the necessary Environment Variables (`PORT`, `VITE_NEWS_API_KEY`, `VITE_HF_TOKEN`).
+This repository is strictly configured as a full-stack monorepo tailored for **Vercel Zero-Config Deployment**. 
 
-## License
-MIT
+1. Push your code to your GitHub repository.
+2. Log into your Vercel Dashboard and click **Add New Project**.
+3. Import this repository.
+4. **Important**: Leave all Build Settings exactly as their defaults. Do *not* change the Root Directory. Vercel will automatically read the `vercel.json` file at the root to compile the frontend and deploy the backend as Serverless Functions.
+5. Add your `VITE_HF_TOKEN` in the Environment Variables tab.
+6. Click **Deploy**.
+
+---
+
+## 🛡️ License
+Distributed under the MIT License. See `LICENSE` for more information.
