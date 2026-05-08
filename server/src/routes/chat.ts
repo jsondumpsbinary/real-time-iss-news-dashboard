@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     }
 
     const hf = new HfInference(hfToken);
-    const model = process.env.HF_MODEL || 'mistralai/Mistral-7B-Instruct-v0.2';
+    const model = process.env.HF_MODEL || 'Qwen/Qwen2.5-Coder-32B-Instruct';
 
     const systemPrompt = `You are a helpful AI assistant for the Real-Time ISS & News Dashboard.
 You can ONLY answer questions using the provided dashboard data context.
