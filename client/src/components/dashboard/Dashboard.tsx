@@ -51,11 +51,11 @@ export function Dashboard() {
             transition={{ duration: 0.3 }}
             className="grid grid-cols-1 lg:grid-cols-3 gap-6"
           >
-            <div className="lg:col-span-2 h-[500px] rounded-xl overflow-hidden border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)] relative bg-black/50 backdrop-blur-sm group">
+            <div className="lg:col-span-2 h-[500px] xl:h-[600px] rounded-xl overflow-hidden border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)] relative bg-black/50 backdrop-blur-sm group">
               <div className="absolute inset-0 pointer-events-none border border-cyan-500/0 group-hover:border-cyan-500/30 transition-colors duration-500 rounded-xl z-20" />
               <IssMap />
             </div>
-            <div className="flex flex-col gap-6">
+            <div className="h-[500px] xl:h-[600px] w-full">
               <IssStats />
             </div>
           </motion.section>
